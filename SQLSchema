@@ -1,0 +1,40 @@
+CREATE TYPE book_status AS ENUM ('available','borrowed','reserved','maintenance');
+CREATE TYPE member_status AS ENUM ('active','suspended');
+CREATE TYPE transaction_status AS ENUM ('active','returned','overdue');
+
+CREATE TABLE books(
+ id SERIAL PRIMARY KEY,
+ isbn TEXT UNIQUE,
+ title TEXT NOT NULL,
+ author TEXT NOT NULL,
+ category TEXT,
+ status book_status DEFAULT 'available',
+ total_copies INT NOT NULL,
+ available_copies INT NOT NULL
+);
+
+CREATE TABLE members(
+ id SERIAL PRIMARY KEY,
+ name TEXT NOT NULL,
+ email TEXT UNIQUE NOT NULL,
+ membership_number TEXT UNIQUE NOT NULL,
+ status member_status DEFAULT 'active'
+);
+
+CREATE TABLE transactions(
+ id SERIAL PRIMARY KEY,
+ book_id INT REFERENCES books(id),
+ member_id INT REFERENCES members(id),
+ borrowed_at TIMESTAMP NOT NULL,
+ due_date TIMESTAMP NOT NULL,
+ returned_at TIMESTAMP,
+ status transaction_status DEFAULT 'active'
+);
+
+CREATE TABLE fines(
+ id SERIAL PRIMARY KEY,
+ member_id INT REFERENCES members(id),
+ transaction_id INT REFERENCES transactions(id),
+ amount NUMERIC(10,2),
+ paid_at TIMESTAMP
+);

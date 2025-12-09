@@ -1,0 +1,25 @@
+{
+  "name": "library-management",
+  "version": "1.0.0",
+  "description": "Include this content in your repo README:",
+  "homepage": "https://github.com/VINAY-SANDEEP/Library-Management#readme",
+  "bugs": {
+    "url": "https://github.com/VINAY-SANDEEP/Library-Management/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VINAY-SANDEEP/Library-Management.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.19",
+    "express": "^5.2.1",
+    "sequelize": "^6.37.7"
+  }
+}
